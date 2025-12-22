@@ -255,14 +255,10 @@ function getBootyRating(score) {
 // Display score with booty rating
 function displayScore(score) {
     const scoreSection = document.getElementById('score-section');
-    const scoreValue = document.getElementById('score-value');
     const bootyText = document.getElementById('booty-text');
     const presentText = document.getElementById('present-text');
     const progressFill = document.getElementById('progress-fill');
     const progressHandle = document.getElementById('progress-handle');
-    
-    // Display score
-    scoreValue.textContent = Math.round(score);
     
     // Get booty rating and present
     const rating = getBootyRating(score);
