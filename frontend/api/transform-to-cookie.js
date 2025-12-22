@@ -7,6 +7,15 @@ const COOKIE_PROMPT = `Using the provided image as reference, create a tasty, pe
 Scene + framing: square 1024x1024 close-up food photography. The cookie is placed on crinkled parchment paper (baking sheet vibe), with soft natural lighting, shallow depth of field, and gentle shadows. Background should be parchment texture (not a flat color). Do not include any extra text or watermarks.`;
 
 module.exports = async (req, res) => {
+    // Handle CORS
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
+    
     // Only allow POST requests
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
