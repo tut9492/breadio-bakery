@@ -1,0 +1,713 @@
+/* === Retro Christmas Variables === */
+:root {
+    --bg-green: #2D8B5E;
+    --bg-green-dark: #247A50;
+    --cream: #F5F0E1;
+    --cream-dark: #E8E0CC;
+    --coral: #E8A090;
+    --coral-light: #F0B8A8;
+    --coral-dark: #D4887A;
+    --brown: #6B4423;
+    --brown-light: #8B5A2B;
+    --brown-dark: #4A2F18;
+    --gold: #C4A35A;
+    --shadow: rgba(0, 0, 0, 0.2);
+}
+
+/* === Reset & Base === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--bg-green);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* === Radiating Lines (Sunburst) === */
+.sunburst {
+    position: fixed;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200%;
+    height: 120%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.sunburst::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    background: repeating-conic-gradient(
+        from 0deg at 50% 0%,
+        transparent 0deg,
+        rgba(36, 122, 80, 0.4) 1deg,
+        transparent 2deg,
+        transparent 10deg
+    );
+}
+
+/* === Snowfall === */
+.snowfall {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.snow {
+    position: absolute;
+    top: -20px;
+    color: rgba(245, 240, 225, 0.5);
+    font-size: 1rem;
+    animation: fall linear infinite;
+}
+
+.snow:nth-child(1) { left: 5%; animation-duration: 12s; animation-delay: 0s; font-size: 0.8rem; }
+.snow:nth-child(2) { left: 15%; animation-duration: 15s; animation-delay: 2s; font-size: 1.2rem; }
+.snow:nth-child(3) { left: 25%; animation-duration: 10s; animation-delay: 4s; font-size: 0.9rem; }
+.snow:nth-child(4) { left: 35%; animation-duration: 18s; animation-delay: 1s; font-size: 1rem; }
+.snow:nth-child(5) { left: 45%; animation-duration: 14s; animation-delay: 3s; font-size: 0.7rem; }
+.snow:nth-child(6) { left: 55%; animation-duration: 11s; animation-delay: 5s; font-size: 1.1rem; }
+.snow:nth-child(7) { left: 65%; animation-duration: 16s; animation-delay: 0.5s; font-size: 0.8rem; }
+.snow:nth-child(8) { left: 75%; animation-duration: 13s; animation-delay: 2.5s; font-size: 1rem; }
+.snow:nth-child(9) { left: 85%; animation-duration: 17s; animation-delay: 4.5s; font-size: 0.9rem; }
+.snow:nth-child(10) { left: 95%; animation-duration: 12s; animation-delay: 1.5s; font-size: 1.2rem; }
+.snow:nth-child(11) { left: 10%; animation-duration: 19s; animation-delay: 6s; font-size: 0.7rem; }
+.snow:nth-child(12) { left: 30%; animation-duration: 14s; animation-delay: 7s; font-size: 1rem; }
+.snow:nth-child(13) { left: 50%; animation-duration: 16s; animation-delay: 3.5s; font-size: 0.8rem; }
+.snow:nth-child(14) { left: 70%; animation-duration: 11s; animation-delay: 5.5s; font-size: 1.1rem; }
+.snow:nth-child(15) { left: 90%; animation-duration: 15s; animation-delay: 8s; font-size: 0.9rem; }
+
+@keyframes fall {
+    0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0.3;
+    }
+}
+
+/* === Decorative Elements === */
+.decorations {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* Flat brown circles (retro style) */
+.ornament {
+    position: absolute;
+    border-radius: 50%;
+    background-color: var(--brown);
+    opacity: 0.9;
+}
+
+.ornament.gold {
+    background-color: var(--brown-light);
+}
+
+.ornament.burgundy {
+    background-color: var(--brown-dark);
+}
+
+/* Ornament positions - arranged more like a tree */
+.o1 { width: 90px; height: 90px; top: 18%; left: 8%; }
+.o2 { width: 70px; height: 70px; top: 25%; left: 15%; }
+.o3 { width: 60px; height: 60px; top: 12%; left: 42%; }
+.o4 { width: 80px; height: 80px; top: 8%; right: 18%; }
+.o5 { width: 65px; height: 65px; top: 20%; right: 10%; }
+.o6 { width: 85px; height: 85px; bottom: 22%; left: 18%; }
+.o7 { width: 55px; height: 55px; bottom: 32%; left: 28%; }
+.o8 { width: 95px; height: 95px; bottom: 18%; right: 22%; }
+.o9 { width: 60px; height: 60px; bottom: 28%; right: 14%; }
+.o10 { width: 75px; height: 75px; top: 45%; left: 5%; }
+
+/* Twinkling stars - now in cream */
+.star {
+    position: absolute;
+    color: var(--cream);
+    font-size: 1rem;
+    animation: twinkle 2s ease-in-out infinite;
+    opacity: 0.7;
+}
+
+.s1 { top: 12%; left: 20%; animation-delay: 0s; }
+.s2 { top: 8%; right: 25%; animation-delay: 0.3s; font-size: 0.8rem; }
+.s3 { top: 35%; right: 5%; animation-delay: 0.6s; }
+.s4 { bottom: 35%; left: 8%; animation-delay: 0.9s; font-size: 0.8rem; }
+.s5 { bottom: 12%; left: 35%; animation-delay: 1.2s; }
+.s6 { bottom: 8%; right: 35%; animation-delay: 1.5s; font-size: 0.8rem; }
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Floating cookie images */
+.floating-cookie {
+    position: absolute;
+    pointer-events: none;
+    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.3));
+}
+
+.cookie1 {
+    width: 260px;
+    height: auto;
+    bottom: 10%;
+    left: -3%;
+    transform: rotate(-12deg);
+}
+
+
+/* tut™ logo */
+.tut-logo-link {
+    position: absolute;
+    bottom: -2%;
+    left: 1%;
+    pointer-events: auto;
+    transition: transform 0.3s ease;
+    z-index: 10;
+}
+
+.tut-logo-link:hover {
+    transform: scale(1.08);
+}
+
+.tut-logo {
+    width: 140px;
+    height: auto;
+    filter: drop-shadow(0 4px 15px rgba(0,0,0,0.25));
+}
+
+/* megaETH logo - below tut logo */
+.megaeth-logo {
+    position: absolute;
+    bottom: 3%;
+    right: 3%;
+    width: 60px;
+    height: auto;
+    filter: drop-shadow(0 3px 10px rgba(0,0,0,0.2));
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* === Vignette Overlay === */
+.vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    background: radial-gradient(ellipse at center, transparent 50%, rgba(20, 60, 40, 0.3) 100%);
+}
+
+/* === Container === */
+.container {
+    position: relative;
+    z-index: 3;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: visible;
+}
+
+/* === Centered Content Wrapper === */
+.centered-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* === Main === */
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* === Header === */
+header {
+    text-align: center;
+    margin-bottom: 50px;
+    width: 100%;
+    overflow: visible;
+}
+
+.title-with-bread {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+
+.bread-link {
+    position: absolute;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    z-index: 1;
+}
+
+.bread-link:hover {
+    transform: scale(1.1);
+}
+
+.bread-link.bread-left {
+    left: -120px;
+}
+
+.bread-link.bread-right {
+    right: -120px;
+}
+
+.bread-slice {
+    width: 240px;
+    height: auto;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.2));
+    display: block;
+}
+
+.bread-link.bread-left .bread-slice {
+    transform: scaleX(1);
+}
+
+.bread-link.bread-right .bread-slice {
+    transform: scaleX(-1);
+}
+
+h1 {
+    font-size: 5rem;
+    font-weight: 800;
+    color: var(--cream);
+    line-height: 1.1;
+    text-transform: lowercase;
+    letter-spacing: 6px;
+    text-shadow: 0 3px 15px rgba(0,0,0,0.3);
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* === Input Section === */
+.input-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    margin-bottom: 40px;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    background: var(--coral-light);
+    border-radius: 20px;
+    padding: 12px 20px;
+    box-shadow: 0 4px 15px rgba(232, 160, 144, 0.3);
+    width: 100%;
+    max-width: 450px;
+    transition: all 0.3s ease;
+    border: none;
+    gap: 10px;
+}
+
+.input-wrapper:focus-within {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(232, 160, 144, 0.4);
+}
+
+.input-action-btn {
+    background: #C94C4C;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.input-action-btn:hover {
+    background: #B84A4A;
+    transform: scale(1.1);
+}
+
+.at-symbol {
+    display: none; /* Hidden since @ is in placeholder */
+}
+
+input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--brown);
+    background: transparent;
+}
+
+input::placeholder {
+    color: #9AAA9A;
+    font-weight: 400;
+}
+
+#bake-btn {
+    background: var(--coral-light);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 16px 50px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(232, 160, 144, 0.3);
+    text-transform: lowercase;
+    letter-spacing: 1px;
+    width: 100%;
+    max-width: 450px;
+}
+
+#bake-btn:hover {
+    background: var(--coral);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(232, 160, 144, 0.4);
+}
+
+#bake-btn:active {
+    transform: translateY(0);
+}
+
+#bake-btn.loading {
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+#bake-btn .btn-loading {
+    display: none;
+}
+
+#bake-btn.loading .btn-text {
+    display: none;
+}
+
+#bake-btn.loading .btn-loading {
+    display: inline;
+}
+
+/* === Results Section === */
+.results-section {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    animation: fadeIn 0.5s ease;
+}
+
+.results-section.visible {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.image-box {
+    text-align: center;
+}
+
+.label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 12px;
+    text-transform: lowercase;
+    letter-spacing: 1px;
+}
+
+.image-frame {
+    width: 200px;
+    height: 200px;
+    background: var(--cream);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid var(--coral);
+}
+
+.image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.arrow {
+    font-size: 2.5rem;
+    color: var(--cream);
+    animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(10px); }
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#download-btn {
+    background: var(--brown);
+    color: var(--cream);
+    border: none;
+    border-radius: 50px;
+    padding: 15px 40px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(107, 68, 35, 0.3);
+    text-transform: lowercase;
+    letter-spacing: 1px;
+}
+
+#download-btn:hover {
+    background: var(--brown-light);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(107, 68, 35, 0.4);
+}
+
+#share-btn {
+    background: var(--coral);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 15px 40px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(232, 160, 144, 0.3);
+    text-transform: lowercase;
+    letter-spacing: 1px;
+}
+
+#share-btn:hover {
+    background: var(--coral-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(232, 160, 144, 0.4);
+}
+
+/* === Error Message === */
+.error-message {
+    display: none;
+    background: var(--brown);
+    color: var(--cream);
+    padding: 15px 30px;
+    border-radius: 15px;
+    text-align: center;
+    font-weight: 600;
+    margin-top: 20px;
+    animation: shake 0.5s ease;
+    box-shadow: 0 5px 15px rgba(107, 68, 35, 0.3);
+}
+
+.error-message.visible {
+    display: block;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+/* === Footer === */
+footer {
+    margin-top: auto;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+footer p {
+    color: var(--cream);
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+    .title-with-bread {
+        gap: 30px;
+    }
+    
+    .bread-slice {
+        width: 120px;
+    }
+    
+    .bread-link.bread-left {
+        left: -60px;
+    }
+    
+    .bread-link.bread-right {
+        right: -60px;
+    }
+    
+    h1 {
+        font-size: 3rem;
+        letter-spacing: 3px;
+    }
+    
+    .image-frame {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .arrow {
+        transform: rotate(90deg);
+        font-size: 2rem;
+    }
+    
+    .image-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    @keyframes bounce {
+        0%, 100% { transform: rotate(90deg) translateX(0); }
+        50% { transform: rotate(90deg) translateX(10px); }
+    }
+    
+    .ornament {
+        transform: scale(0.6);
+        opacity: 0.6;
+    }
+    
+    .floating-cookie {
+        opacity: 0.5;
+    }
+    
+    .cookie1 {
+        width: 150px;
+        bottom: 2%;
+        left: -8%;
+    }
+    
+    .bread-slice {
+        width: 120px;
+    }
+    
+    .tut-logo-link {
+        bottom: -1%;
+        left: 0.5%;
+    }
+    
+    .cookie1 {
+        bottom: 8%;
+    }
+    
+    .tut-logo {
+        width: 90px;
+    }
+    
+    .megaeth-logo {
+        width: 40px;
+        bottom: 2%;
+        right: 2%;
+    }
+    
+    .star {
+        opacity: 0.4;
+    }
+    
+    .snow {
+        opacity: 0.3;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2.2rem;
+        letter-spacing: 2px;
+    }
+    
+    .input-wrapper {
+        padding: 12px 22px;
+    }
+    
+    input {
+        font-size: 1.1rem;
+    }
+    
+    #bake-btn {
+        padding: 14px 40px;
+        font-size: 1.1rem;
+    }
+    
+    footer p {
+        font-size: 0.95rem;
+    }
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breadio Bakery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Radiating sunburst lines -->
+    <div class="sunburst"></div>
+
+    <!-- Snowfall -->
+    <div class="snowfall">
+        <div class="snow">❄</div>
+        <div class="snow">❅</div>
+        <div class="snow">❆</div>
+        <div class="snow">❄</div>
+        <div class="snow">❅</div>
+        <div class="snow">❆</div>
+        <div class="snow">❄</div>
+        <div class="snow">❅</div>
+        <div class="snow">❆</div>
+        <div class="snow">❄</div>
+        <div class="snow">❅</div>
+        <div class="snow">❄</div>
+        <div class="snow">❅</div>
+        <div class="snow">❆</div>
+        <div class="snow">❄</div>
+    </div>
+
+    <!-- Floating decorative elements -->
+    <div class="decorations">
+        <!-- Bokeh lights / ornaments -->
+        <div class="ornament gold o1"></div>
+        <div class="ornament burgundy o2"></div>
+        <div class="ornament gold o3"></div>
+        <div class="ornament burgundy o4"></div>
+        <div class="ornament gold o5"></div>
+        <div class="ornament burgundy o6"></div>
+        <div class="ornament gold o7"></div>
+        <div class="ornament burgundy o8"></div>
+        <div class="ornament gold o9"></div>
+        <div class="ornament burgundy o10"></div>
+        
+        <!-- Twinkling stars -->
+        <div class="star s1">✦</div>
+        <div class="star s2">✧</div>
+        <div class="star s3">✦</div>
+        <div class="star s4">✧</div>
+        <div class="star s5">✦</div>
+        <div class="star s6">✧</div>
+        
+        <!-- Floating cookie images -->
+        <img src="cookie-example-1.png" alt="" class="floating-cookie cookie1">
+        
+        <!-- tut™ logo - links to X -->
+        <a href="https://x.com/Tuteth_" target="_blank" rel="noopener noreferrer" class="tut-logo-link">
+            <img src="tut-logo.png" alt="tut™" class="tut-logo">
+        </a>
+        
+        <!-- megaETH logo - top right -->
+        <img src="megaETH.png" alt="megaETH" class="megaeth-logo">
+    </div>
+
+    <!-- Vignette overlay -->
+    <div class="vignette"></div>
+
+    <div class="container">
+        <div class="centered-content">
+            <!-- Header -->
+            <header>
+                <div class="title-with-bread">
+                    <a href="https://rarible.com/megaethtestnet/collections/0xd45ad5678fd51d3d6b4ce55c720817d9896bb269" target="_blank" rel="noopener noreferrer" class="bread-link bread-left">
+                        <img src="breadio.png" alt="" class="bread-slice">
+                    </a>
+                    <h1>B r e a d i o<br>B a k e r y</h1>
+                    <a href="https://rarible.com/megaethtestnet/collections/0xd45ad5678fd51d3d6b4ce55c720817d9896bb269" target="_blank" rel="noopener noreferrer" class="bread-link bread-right">
+                        <img src="booty.png" alt="" class="bread-slice">
+                    </a>
+                </div>
+            </header>
+
+            <!-- Main content -->
+            <main>
+            <!-- Input Section -->
+            <div class="input-section">
+                <div class="input-wrapper">
+                    <span class="at-symbol">@</span>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        placeholder="@ enter x username"
+                        autocomplete="off"
+                        spellcheck="false"
+                    >
+                    <button class="input-action-btn">⋯</button>
+                </div>
+                <button id="bake-btn" onclick="bakeCookie()">
+                    <span class="btn-text">bake it 🍪</span>
+                    <span class="btn-loading">baking...</span>
+                </button>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-section" id="results">
+                <div class="image-container">
+                    <div class="image-box" id="original-box">
+                        <p class="label">original</p>
+                        <div class="image-frame">
+                            <img id="original-img" src="" alt="Original profile">
+                        </div>
+                    </div>
+                    
+                    <div class="arrow">→</div>
+                    
+                    <div class="image-box" id="cookie-box">
+                        <p class="label">cookie</p>
+                        <div class="image-frame">
+                            <img id="cookie-img" src="" alt="Cookie version">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="download-btn" onclick="downloadCookie()">
+                        download cookie 🎁
+                    </button>
+                    <button id="share-btn">
+                        share on X 🐦
+                    </button>
+                </div>
+            </div>
+
+            <!-- Error message -->
+            <div class="error-message" id="error"></div>
+            </main>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>happy holidays from tut™ 🎄✨</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
