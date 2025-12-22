@@ -1,0 +1,9 @@
+{
+  "name": "breadio-bakery-frontend",
+  "version": "1.0.0",
+  "description": "Breadio Bakery - Transform X profiles into Christmas cookies",
+  "dependencies": {
+    "axios": "^1.13.2",
+    "form-data": "^4.0.5"
+  }
+}

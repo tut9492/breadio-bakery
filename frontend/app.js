@@ -1,7 +1,7 @@
-// API URL - set this to your production backend URL when deploying
-// For local development, uses localhost
-// For production, update this to your backend URL (e.g., 'https://your-backend.railway.app')
-const API_URL = window.API_URL || 'http://localhost:3001';
+// API URL - use relative paths for Vercel serverless functions
+// In production, these will be /api/health, /api/fetch-profile, etc.
+// For local development with Vercel dev, it will work automatically
+const API_URL = window.API_URL || '';
 
 let currentCookieUrl = null;
 let currentUsername = null;

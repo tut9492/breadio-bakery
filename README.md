@@ -12,34 +12,39 @@ Transform X (Twitter) profile pictures into festive Christmas cookies using AI!
 
 ## 🚀 Quick Start
 
-### Backend Setup
-
-```bash
-cd backend
-npm install
-cp .env.example .env  # Add your API keys
-npm start
-```
-
-### Frontend Setup
+### Local Development
 
 ```bash
 cd frontend
-# Open index.html in browser or use a local server
-python3 -m http.server 3002
+npm install
+# Install Vercel CLI for local testing
+npm i -g vercel
+vercel dev
 ```
+
+### Production Deployment
+
+Everything deploys to **Vercel** - no separate backend needed!
+
+1. Deploy to Vercel (connects to GitHub automatically)
+2. Add environment variables in Vercel dashboard:
+   - `TWEETSCOUT_API_KEY`
+   - `OPENAI_API_KEY`
+3. Done! 🎉
 
 ## 📁 Project Structure
 
 ```
 Tut bakery/
-├── backend/          # Express API server
-│   ├── server.js    # Main server file
-│   └── .env         # API keys (not in git)
-└── frontend/        # Web interface
-    ├── index.html
-    ├── styles.css
-    └── app.js
+├── frontend/           # Web interface + API
+│   ├── api/           # Vercel serverless functions
+│   │   ├── health.js
+│   │   ├── fetch-profile.js
+│   │   └── transform-to-cookie.js
+│   ├── index.html
+│   ├── styles.css
+│   └── app.js
+└── backend/           # (Legacy - kept for reference)
 ```
 
 ## 🔑 Required API Keys
@@ -49,13 +54,16 @@ Tut bakery/
 
 ## 🌐 Deployment
 
-### Frontend (Vercel/Netlify)
-- Deploy the `frontend/` folder
-- Set environment variable: `VITE_API_URL` or update `API_URL` in `app.js`
+### Vercel (All-in-One)
 
-### Backend (Railway/Render)
-- Deploy the `backend/` folder
-- Set environment variables: `TWEETSCOUT_API_KEY`, `OPENAI_API_KEY`, `PORT`
+1. Connect GitHub repo to Vercel
+2. Root directory: `frontend`
+3. Add environment variables:
+   - `TWEETSCOUT_API_KEY`
+   - `OPENAI_API_KEY`
+4. Deploy! 🚀
+
+That's it! No separate backend needed.
 
 ## 📝 License
 
