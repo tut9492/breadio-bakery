@@ -226,12 +226,12 @@ function getBootyRating(score) {
         };
     } else if (score >= 1000) {
         return {
-            booty: "average booty",
+            booty: "would",
             present: "dyson vacuum"
         };
     } else if (score >= 300) {
         return {
-            booty: "brazilian butt lift - nice but we all know",
+            booty: "botched BBL",
             present: "coal"
         };
     } else if (score >= 200) {
