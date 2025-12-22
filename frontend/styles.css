@@ -688,6 +688,150 @@ footer p {
     }
 }
 
+/* === Score Section === */
+.score-section {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: rgba(30, 30, 30, 0.85);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.score-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.score-label {
+    color: #d4a574;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.info-icon {
+    color: #d4a574;
+    font-size: 0.8rem;
+    cursor: help;
+}
+
+.score-display {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.score-value {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #f4e4c1;
+    line-height: 1;
+    text-shadow: 0 2px 8px rgba(244, 228, 193, 0.3);
+}
+
+.booty-display {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(212, 165, 116, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(212, 165, 116, 0.3);
+}
+
+.booty-label {
+    font-size: 0.85rem;
+    color: #d4a574;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.booty-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #f4e4c1;
+    font-style: italic;
+}
+
+.present-display {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(34, 197, 94, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.present-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.present-label {
+    font-size: 0.85rem;
+    color: #22c55e;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.present-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #4ade80;
+}
+
+.score-progress {
+    margin-top: 1.5rem;
+}
+
+.progress-bar {
+    position: relative;
+    width: 100%;
+    height: 14px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 7px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: linear-gradient(to right, #f97316, #eab308, #22c55e, #10b981);
+    border-radius: 7px;
+    transition: width 0.8s ease;
+    width: 0%;
+}
+
+.progress-handle {
+    position: absolute;
+    top: 50%;
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    transition: left 0.8s ease;
+    border: 2px solid #f4e4c1;
+    left: 0%;
+}
+
+.progress-markers {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: #d4a574;
+    margin-top: 0.5rem;
+}
+
 @media (max-width: 480px) {
     h1 {
         font-size: 2.2rem;
@@ -709,5 +853,21 @@ footer p {
     
     footer p {
         font-size: 0.95rem;
+    }
+    
+    .score-section {
+        padding: 1.5rem;
+    }
+    
+    .score-value {
+        font-size: 2.5rem;
+    }
+    
+    .booty-text {
+        font-size: 1rem;
+    }
+    
+    .present-text {
+        font-size: 1rem;
     }
 }

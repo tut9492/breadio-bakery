@@ -44,10 +44,33 @@ export default async function handler(req, res) {
 
         console.log(`✅ Found profile: ${accountData.name} (@${accountData.screen_name})`);
 
+        // Get user_id for score lookup
+        const userId = accountData.id || accountData.user_id || accountData.id_str;
+        let score = null;
+
+        // Fetch score if user_id is available (gracefully fail if score API is unavailable)
+        if (userId) {
+            try {
+                console.log(`📊 Fetching score for user_id: ${userId}...`);
+                const scoreResponse = await axios.get(`https://api.tweetscout.io/v2/score-id/${userId}`, {
+                    headers: {
+                        'ApiKey': TWEETSCOUT_API_KEY,
+                        'Accept': 'application/json'
+                    }
+                });
+                score = scoreResponse.data.score || null;
+                console.log(`✅ Score retrieved: ${score}`);
+            } catch (scoreError) {
+                console.warn('⚠️ Could not fetch score:', scoreError.response?.data || scoreError.message);
+                // Don't fail the whole request if score fails - just continue without score
+            }
+        }
+
         res.status(200).json({
             username: username,
             avatar: avatarUrl,
             name: accountData.name,
+            score: score,
             accountData: accountData
         });
     } catch (error) {

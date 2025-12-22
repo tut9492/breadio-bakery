@@ -39,6 +39,7 @@ async function bakeCookie() {
     // Reset state
     hideError();
     results.classList.remove('visible');
+    document.getElementById('score-section').style.display = 'none';
     bakeBtn.classList.add('loading');
     currentUsername = username;
     
@@ -85,6 +86,14 @@ async function bakeCookie() {
         // Show results
         results.classList.add('visible');
         console.log(`✅ Cookie created for @${username}!`);
+        
+        // Display score if available
+        if (profileData.score !== null && profileData.score !== undefined) {
+            displayScore(profileData.score);
+        }
+        
+        // FOR LOCAL TESTING ONLY - Uncomment to test score UI without API:
+        // displayScore(1250); // Mock score: "certified nice booty" + "at home espresso kit"
         
     } catch (err) {
         console.error('Error:', err);
@@ -191,6 +200,85 @@ function showError(message) {
 function hideError() {
     const error = document.getElementById('error');
     error.classList.remove('visible');
+}
+
+// Scoring system based on your criteria
+function getBootyRating(score) {
+    if (score >= 4000) {
+        return {
+            booty: "absolute dumptruck",
+            present: "10 million dollar home"
+        };
+    } else if (score >= 3000) {
+        return {
+            booty: "Don't care about face, booty so nice",
+            present: "cryptopunk"
+        };
+    } else if (score >= 1500) {
+        return {
+            booty: "Best natural booty in web3",
+            present: "free trip to turkey for hair"
+        };
+    } else if (score >= 1250) {
+        return {
+            booty: "certified nice booty",
+            present: "at home espresso kit"
+        };
+    } else if (score >= 1000) {
+        return {
+            booty: "average booty",
+            present: "dyson vaccuumm"
+        };
+    } else if (score >= 300) {
+        return {
+            booty: "brazillian butt lift - nice but we all know",
+            present: "coal"
+        };
+    } else if (score >= 200) {
+        return {
+            booty: "booty can fit in one hand",
+            present: "coal"
+        };
+    } else if (score >= 100) {
+        return {
+            booty: "a little booty bump",
+            present: "coal"
+        };
+    } else {
+        return {
+            booty: "pancake booty",
+            present: "coal"
+        };
+    }
+}
+
+// Display score with booty rating
+function displayScore(score) {
+    const scoreSection = document.getElementById('score-section');
+    const scoreValue = document.getElementById('score-value');
+    const bootyText = document.getElementById('booty-text');
+    const presentText = document.getElementById('present-text');
+    const progressFill = document.getElementById('progress-fill');
+    const progressHandle = document.getElementById('progress-handle');
+    
+    // Display score
+    scoreValue.textContent = Math.round(score);
+    
+    // Get booty rating and present
+    const rating = getBootyRating(score);
+    bootyText.textContent = rating.booty;
+    presentText.textContent = rating.present;
+    
+    // Calculate progress (0-4000 range, but show up to 4000+)
+    const maxScore = 4000;
+    const progress = Math.min((score / maxScore) * 100, 100);
+    
+    // Update progress bar
+    progressFill.style.width = `${progress}%`;
+    progressHandle.style.left = `${progress}%`;
+    
+    // Show score section
+    scoreSection.style.display = 'block';
 }
 
 
