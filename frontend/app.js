@@ -206,7 +206,7 @@ function hideError() {
 function getBootyRating(score) {
     if (score >= 4000) {
         return {
-            booty: "absolute dumptruck",
+            booty: "absolute dump truck",
             present: "10 million dollar home"
         };
     } else if (score >= 3000) {
@@ -227,11 +227,11 @@ function getBootyRating(score) {
     } else if (score >= 1000) {
         return {
             booty: "average booty",
-            present: "dyson vaccuumm"
+            present: "dyson vacuum"
         };
     } else if (score >= 300) {
         return {
-            booty: "brazillian butt lift - nice but we all know",
+            booty: "brazilian butt lift - nice but we all know",
             present: "coal"
         };
     } else if (score >= 200) {
