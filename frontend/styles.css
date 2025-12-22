@@ -802,7 +802,13 @@ footer p {
     left: 0;
     top: 0;
     height: 100%;
-    background: linear-gradient(to right, #f97316, #eab308, #22c55e, #10b981);
+    background: linear-gradient(to right, 
+        #f97316 0%,      /* Orange at 0 */
+        #f97316 5%,      /* Orange to 100 (5% of 2000) */
+        #eab308 25%,     /* Yellow at 500 (25% of 2000) */
+        #84cc16 50%,     /* Light green at 1000 (50% of 2000) */
+        #22c55e 100%     /* Vibrant green at 2000 */
+    );
     border-radius: 7px;
     transition: width 0.8s ease;
     width: 0%;
