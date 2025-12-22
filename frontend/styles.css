@@ -837,25 +837,17 @@ footer p {
 .progress-handle {
     position: absolute;
     top: 50%;
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     transform: translate(-50%, -50%);
     transition: left 0.8s ease;
     left: 0%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
+    background: url('booty.png') center/contain no-repeat;
+    background-size: 100% 100%;
     border: none;
-    box-shadow: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     z-index: 10;
-}
-
-.progress-handle::before {
-    content: '🍑';
-    font-size: 28px;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
-    line-height: 1;
 }
 
 .progress-markers {
