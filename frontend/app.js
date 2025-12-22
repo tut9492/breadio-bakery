@@ -265,8 +265,8 @@ function displayScore(score) {
     bootyText.textContent = rating.booty;
     presentText.textContent = rating.present;
     
-    // Calculate progress (0-2000 range)
-    const maxScore = 2000;
+    // Calculate progress (0-4000 range to show all booty types)
+    const maxScore = 4000;
     const progress = Math.min((score / maxScore) * 100, 100);
     
     // Update progress bar

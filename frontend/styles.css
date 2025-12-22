@@ -803,11 +803,15 @@ footer p {
     top: 0;
     height: 100%;
     background: linear-gradient(to right, 
-        #f97316 0%,      /* Orange at 0 */
-        #f97316 5%,      /* Orange to 100 (5% of 2000) */
-        #eab308 25%,     /* Yellow at 500 (25% of 2000) */
-        #84cc16 50%,     /* Light green at 1000 (50% of 2000) */
-        #22c55e 100%     /* Vibrant green at 2000 */
+        #f97316 0%,      /* Orange at 0 (pancake booty) */
+        #f97316 2.5%,    /* Orange to 100 (a little booty bump) */
+        #fbbf24 5%,      /* Yellow at 200 (booty can fit in one hand) */
+        #eab308 7.5%,    /* Yellow at 300 (brazilian butt lift) */
+        #84cc16 25%,     /* Light green at 1000 (average booty) */
+        #65a30d 31.25%,  /* Green at 1250 (certified nice booty) */
+        #22c55e 37.5%,   /* Vibrant green at 1500 (Best natural booty in web3) */
+        #16a34a 75%,     /* Dark green at 3000 (Don't care about face) */
+        #15803d 100%     /* Deep green at 4000 (absolute dump truck) */
     );
     border-radius: 7px;
     transition: width 0.8s ease;
