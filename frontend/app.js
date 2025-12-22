@@ -130,7 +130,7 @@ async function shareOnX() {
     }
     
     try {
-        const tweetText = 'merry bootymas\n\nget your cookie by @Tuteth_';
+        const tweetText = 'merry bootymas\n\nget your cookie and year end booty score by @Tuteth_';
         
         // Check if Web Share API is available (supports images)
         if (navigator.share && navigator.canShare) {
