@@ -1,5 +1,7 @@
-// API URL - use environment variable or default to localhost for development
-const API_URL = window.API_URL || import.meta.env.VITE_API_URL || 'http://localhost:3001';
+// API URL - set this to your production backend URL when deploying
+// For local development, uses localhost
+// For production, update this to your backend URL (e.g., 'https://your-backend.railway.app')
+const API_URL = window.API_URL || 'http://localhost:3001';
 
 let currentCookieUrl = null;
 let currentUsername = null;
