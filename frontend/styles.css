@@ -838,9 +838,18 @@ footer p {
 .progress-markers {
     display: flex;
     justify-content: space-between;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     color: #d4a574;
     margin-top: 0.5rem;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+.progress-markers span {
+    flex: 0 0 auto;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 0.6rem;
 }
 
 @media (max-width: 480px) {
