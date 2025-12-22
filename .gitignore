@@ -31,3 +31,6 @@ build/
 # Images (keep frontend images, ignore source Images folder)
 Images/
 
+# Vercel
+.vercel
+

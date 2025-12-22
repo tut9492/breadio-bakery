@@ -1,7 +1,12 @@
 {
-  "name": "breadio-bakery-frontend",
+  "name": "breadio-bakery",
   "version": "1.0.0",
+  "type": "module",
   "description": "Breadio Bakery - Transform X profiles into Christmas cookies",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'No build needed'"
+  },
   "dependencies": {
     "axios": "^1.13.2",
     "form-data": "^4.0.5"
