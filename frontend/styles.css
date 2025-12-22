@@ -783,6 +783,7 @@ footer p {
 
 .score-progress {
     margin-top: 1.5rem;
+    position: relative;
 }
 
 .progress-bar {
@@ -791,8 +792,9 @@ footer p {
     height: 14px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 7px;
-    overflow: hidden;
+    overflow: visible;
     margin-bottom: 0.5rem;
+    z-index: 1;
 }
 
 .progress-fill {
@@ -804,22 +806,23 @@ footer p {
     border-radius: 7px;
     transition: width 0.8s ease;
     width: 0%;
+    z-index: 1;
 }
 
 .progress-handle {
     position: absolute;
     top: 50%;
-    width: 40px;
-    height: 40px;
+    width: auto;
+    height: auto;
+    max-width: 100px;
+    max-height: 100px;
     transform: translate(-50%, -50%);
     transition: left 0.8s ease;
     left: 0%;
-    background: url('booty.png') center/contain no-repeat;
-    background-size: 100% 100%;
-    border: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-    z-index: 10;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+    z-index: 20;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+    pointer-events: none;
+    object-fit: contain;
 }
 
 .progress-markers {
