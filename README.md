@@ -57,11 +57,16 @@ Tut bakery/
 ### Vercel (All-in-One)
 
 1. Connect GitHub repo to Vercel
-2. Root directory: `frontend`
-3. Add environment variables:
-   - `TWEETSCOUT_API_KEY`
-   - `OPENAI_API_KEY`
+2. **IMPORTANT**: In Vercel project settings → General → Root Directory, set it to: `frontend`
+3. Add environment variables in Settings → Environment Variables:
+   - `TWEETSCOUT_API_KEY` = your TweetScout API key
+   - `OPENAI_API_KEY` = your OpenAI API key
 4. Deploy! 🚀
+
+**Troubleshooting 404 errors:**
+- Make sure Root Directory is set to `frontend` in Vercel settings
+- The API functions are in `frontend/api/` and should be auto-detected
+- Check Vercel deployment logs for any errors
 
 That's it! No separate backend needed.
 
