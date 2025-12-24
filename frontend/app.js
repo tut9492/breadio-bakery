@@ -7,13 +7,23 @@ let currentCookieUrl = null;
 let currentUsername = null;
 
 // #region agent log
-fetch('http://127.0.0.1:7243/ingest/c028f3d2-94b2-40f8-9e66-d5352ece422c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app.js:8',message:'Script loaded',data:{readyState:document.readyState},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+try {
+    console.log('🔍 [DEBUG] Script starting to load...');
+    fetch('http://127.0.0.1:7243/ingest/c028f3d2-94b2-40f8-9e66-d5352ece422c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app.js:10',message:'Script loaded',data:{readyState:document.readyState},timestamp:Date.now(),sessionId:'debug-session',runId:'run2',hypothesisId:'A'})}).catch((e)=>console.error('Log fetch error:',e));
+} catch(e) {
+    console.error('❌ [DEBUG] Error in script initialization:', e);
+}
 // #endregion
 
 // Initialize event listeners (works whether DOM is already loaded or not)
 function initializeEventListeners() {
+    console.log('🔍 [DEBUG] initializeEventListeners() called');
     // #region agent log
-    fetch('http://127.0.0.1:7243/ingest/c028f3d2-94b2-40f8-9e66-d5352ece422c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app.js:12',message:'DOMContentLoaded fired',data:{readyState:document.readyState},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    try {
+        fetch('http://127.0.0.1:7243/ingest/c028f3d2-94b2-40f8-9e66-d5352ece422c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app.js:18',message:'initializeEventListeners called',data:{readyState:document.readyState},timestamp:Date.now(),sessionId:'debug-session',runId:'run2',hypothesisId:'A'})}).catch((e)=>console.error('Log fetch error:',e));
+    } catch(e) {
+        console.error('Log error:', e);
+    }
     // #endregion
     
     // Handle enter key on input
@@ -55,11 +65,21 @@ function initializeEventListeners() {
 }
 
 // Wait for DOM to be ready, or run immediately if already loaded
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeEventListeners);
-} else {
-    // DOM is already loaded, run immediately
-    initializeEventListeners();
+console.log('🔍 [DEBUG] Setting up initialization, readyState:', document.readyState);
+try {
+    if (document.readyState === 'loading') {
+        console.log('🔍 [DEBUG] DOM still loading, waiting for DOMContentLoaded');
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🔍 [DEBUG] DOMContentLoaded fired');
+            initializeEventListeners();
+        });
+    } else {
+        // DOM is already loaded, run immediately
+        console.log('🔍 [DEBUG] DOM already loaded, running initializeEventListeners immediately');
+        initializeEventListeners();
+    }
+} catch(e) {
+    console.error('❌ [DEBUG] Error setting up initialization:', e);
 }
 
 // Add event listener for share button (more reliable than inline onclick)
@@ -159,8 +179,8 @@ async function bakeCookie() {
             }
         }
         
-        const contentType = profileRes.headers.get('content-type');
-        if (!contentType || !contentType.includes('application/json')) {
+        const profileContentType = profileRes.headers.get('content-type');
+        if (!profileContentType || !profileContentType.includes('application/json')) {
             throw new Error('API returned non-JSON response. Please check deployment.');
         }
         
@@ -202,8 +222,8 @@ async function bakeCookie() {
             }
         }
         
-        const contentType = transformRes.headers.get('content-type');
-        if (!contentType || !contentType.includes('application/json')) {
+        const transformContentType = transformRes.headers.get('content-type');
+        if (!transformContentType || !transformContentType.includes('application/json')) {
             throw new Error('API returned non-JSON response. Please check deployment.');
         }
         
