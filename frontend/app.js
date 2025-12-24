@@ -6,10 +6,25 @@ const API_URL = window.API_URL || '';
 let currentCookieUrl = null;
 let currentUsername = null;
 
-// Handle enter key on input
-document.getElementById('username').addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        bakeCookie();
+// Wait for DOM to be ready
+document.addEventListener('DOMContentLoaded', () => {
+    // Handle enter key on input
+    const usernameInput = document.getElementById('username');
+    if (usernameInput) {
+        usernameInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                bakeCookie();
+            }
+        });
+    }
+    
+    // Add click listener to bake button (more reliable than onclick)
+    const bakeBtn = document.getElementById('bake-btn');
+    if (bakeBtn) {
+        bakeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            bakeCookie();
+        });
     }
 });
 
