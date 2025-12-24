@@ -49,7 +49,15 @@ async function bakeCookie() {
     try {
         // Step 1: Fetch profile
         console.log(`🔍 Fetching profile for @${username}...`);
-        const profileRes = await fetch(`${API_URL}/api/fetch-profile?username=${encodeURIComponent(username)}`);
+        console.log(`API URL: ${API_URL || '(empty - using relative paths)'}`);
+        
+        let profileRes;
+        try {
+            profileRes = await fetch(`${API_URL}/api/fetch-profile?username=${encodeURIComponent(username)}`);
+        } catch (fetchError) {
+            console.error('Fetch error:', fetchError);
+            throw new Error(`Network error: ${fetchError.message}. Check if API endpoints are deployed correctly.`);
+        }
         
         if (!profileRes.ok) {
             const contentType = profileRes.headers.get('content-type');
@@ -75,17 +83,24 @@ async function bakeCookie() {
         
         // Step 2: Transform to cookie
         console.log(`🍪 Transforming to cookie (style: ${selectedStyle})...`);
-        const transformRes = await fetch(`${API_URL}/api/transform-to-cookie`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                imageUrl: avatarUrl,
-                username: username,
-                cookieStyle: selectedStyle
-            })
-        });
+        
+        let transformRes;
+        try {
+            transformRes = await fetch(`${API_URL}/api/transform-to-cookie`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    imageUrl: avatarUrl,
+                    username: username,
+                    cookieStyle: selectedStyle
+                })
+            });
+        } catch (fetchError) {
+            console.error('Fetch error:', fetchError);
+            throw new Error(`Network error: ${fetchError.message}. Check if API endpoints are deployed correctly.`);
+        }
         
         if (!transformRes.ok) {
             const contentType = transformRes.headers.get('content-type');
