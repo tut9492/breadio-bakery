@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Breadio Bakery - Transform X profiles into Christmas cookies",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "dev": "vercel dev",
     "build": "echo 'No build needed'"
