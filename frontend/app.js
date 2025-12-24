@@ -6,25 +6,9 @@ const API_URL = window.API_URL || '';
 let currentCookieUrl = null;
 let currentUsername = null;
 
-// #region agent log
-try {
-    console.log('🔍 [DEBUG] Script starting to load...');
-    fetch('http://127.0.0.1:7243/ingest/c028f3d2-94b2-40f8-9e66-d5352ece422c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app.js:10',message:'Script loaded',data:{readyState:document.readyState},timestamp:Date.now(),sessionId:'debug-session',runId:'run2',hypothesisId:'A'})}).catch((e)=>console.error('Log fetch error:',e));
-} catch(e) {
-    console.error('❌ [DEBUG] Error in script initialization:', e);
-}
-// #endregion
 
 // Initialize event listeners (works whether DOM is already loaded or not)
 function initializeEventListeners() {
-    console.log('🔍 [DEBUG] initializeEventListeners() called');
-    // #region agent log
-    try {
-        fetch('http://127.0.0.1:7243/ingest/c028f3d2-94b2-40f8-9e66-d5352ece422c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app.js:18',message:'initializeEventListeners called',data:{readyState:document.readyState},timestamp:Date.now(),sessionId:'debug-session',runId:'run2',hypothesisId:'A'})}).catch((e)=>console.error('Log fetch error:',e));
-    } catch(e) {
-        console.error('Log error:', e);
-    }
-    // #endregion
     
     // Handle enter key on input
     const usernameInput = document.getElementById('username');
@@ -38,48 +22,23 @@ function initializeEventListeners() {
     
     // Add click listener to bake button (more reliable than onclick)
     const bakeBtn = document.getElementById('bake-btn');
-    // #region agent log
-    fetch('http://127.0.0.1:7243/ingest/c028f3d2-94b2-40f8-9e66-d5352ece422c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app.js:30',message:'Button lookup result',data:{bakeBtnFound:!!bakeBtn,bakeBtnId:bakeBtn?.id,bakeBtnTagName:bakeBtn?.tagName},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
-    // #endregion
     
     if (bakeBtn) {
-        console.log('✅ Bake button found, adding click listener');
-        // #region agent log
-        fetch('http://127.0.0.1:7243/ingest/c028f3d2-94b2-40f8-9e66-d5352ece422c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app.js:35',message:'Adding click listener to button',data:{buttonId:bakeBtn.id},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
-        // #endregion
-        
         bakeBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            console.log('🔘 Bake button clicked!');
-            // #region agent log
-            fetch('http://127.0.0.1:7243/ingest/c028f3d2-94b2-40f8-9e66-d5352ece422c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app.js:40',message:'Click event fired',data:{targetId:e.target?.id,currentTargetId:e.currentTarget?.id},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
-            // #endregion
             bakeCookie();
         });
     } else {
         console.error('❌ Bake button not found!');
-        // #region agent log
-        fetch('http://127.0.0.1:7243/ingest/c028f3d2-94b2-40f8-9e66-d5352ece422c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app.js:47',message:'Button not found error',data:{allButtons:Array.from(document.querySelectorAll('button')).map(b=>({id:b.id,tagName:b.tagName}))},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
-        // #endregion
     }
 }
 
 // Wait for DOM to be ready, or run immediately if already loaded
-console.log('🔍 [DEBUG] Setting up initialization, readyState:', document.readyState);
-try {
-    if (document.readyState === 'loading') {
-        console.log('🔍 [DEBUG] DOM still loading, waiting for DOMContentLoaded');
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('🔍 [DEBUG] DOMContentLoaded fired');
-            initializeEventListeners();
-        });
-    } else {
-        // DOM is already loaded, run immediately
-        console.log('🔍 [DEBUG] DOM already loaded, running initializeEventListeners immediately');
-        initializeEventListeners();
-    }
-} catch(e) {
-    console.error('❌ [DEBUG] Error setting up initialization:', e);
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeEventListeners);
+} else {
+    // DOM is already loaded, run immediately
+    initializeEventListeners();
 }
 
 // Add event listener for share button (more reliable than inline onclick)
@@ -92,61 +51,33 @@ document.addEventListener('click', (e) => {
 });
 
 async function bakeCookie() {
-    console.log('🍪 bakeCookie() called');
-    // #region agent log
-    fetch('http://127.0.0.1:7243/ingest/c028f3d2-94b2-40f8-9e66-d5352ece422c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app.js:54',message:'bakeCookie() entry',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
-    // #endregion
-    
     const usernameInput = document.getElementById('username');
     const bakeBtn = document.getElementById('bake-btn');
     const results = document.getElementById('results');
     const error = document.getElementById('error');
     
-    // #region agent log
-    fetch('http://127.0.0.1:7243/ingest/c028f3d2-94b2-40f8-9e66-d5352ece422c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app.js:61',message:'Element lookup results',data:{usernameInput:!!usernameInput,bakeBtn:!!bakeBtn,results:!!results,error:!!error},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
-    // #endregion
-    
     if (!usernameInput || !bakeBtn || !results || !error) {
         console.error('Missing required elements:', { usernameInput, bakeBtn, results, error });
-        // #region agent log
-        fetch('http://127.0.0.1:7243/ingest/c028f3d2-94b2-40f8-9e66-d5352ece422c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app.js:66',message:'Missing elements error',data:{missing:{usernameInput:!usernameInput,bakeBtn:!bakeBtn,results:!results,error:!error}},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
-        // #endregion
         alert('Page not fully loaded. Please refresh and try again.');
         return;
     }
     
     // Clean username (remove @ if present)
     let username = usernameInput.value.trim().replace('@', '');
-    // #region agent log
-    fetch('http://127.0.0.1:7243/ingest/c028f3d2-94b2-40f8-9e66-d5352ece422c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app.js:87',message:'Username validation',data:{rawValue:usernameInput.value,cleanedUsername:username,isEmpty:!username},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
-    // #endregion
     
     if (!username) {
-        // #region agent log
-        fetch('http://127.0.0.1:7243/ingest/c028f3d2-94b2-40f8-9e66-d5352ece422c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app.js:91',message:'Username empty - returning early',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
-        // #endregion
         showError('please enter a username');
         return;
     }
     
     // Get selected cookie style
     const styleRadio = document.querySelector('input[name="cookie-style"]:checked');
-    // #region agent log
-    fetch('http://127.0.0.1:7243/ingest/c028f3d2-94b2-40f8-9e66-d5352ece422c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app.js:98',message:'Cookie style lookup',data:{styleRadioFound:!!styleRadio,allRadios:Array.from(document.querySelectorAll('input[name="cookie-style"]')).map(r=>({value:r.value,checked:r.checked}))},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
-    // #endregion
-    
     if (!styleRadio) {
-        // #region agent log
-        fetch('http://127.0.0.1:7243/ingest/c028f3d2-94b2-40f8-9e66-d5352ece422c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app.js:102',message:'Cookie style not selected - returning early',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
-        // #endregion
         showError('please select a cookie style');
         bakeBtn.classList.remove('loading');
         return;
     }
     const selectedStyle = styleRadio.value;
-    // #region agent log
-    fetch('http://127.0.0.1:7243/ingest/c028f3d2-94b2-40f8-9e66-d5352ece422c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app.js:109',message:'Cookie style selected',data:{selectedStyle},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
-    // #endregion
     
     // Reset state
     hideError();
