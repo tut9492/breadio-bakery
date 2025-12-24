@@ -36,6 +36,9 @@ async function bakeCookie() {
         return;
     }
     
+    // Get selected cookie style
+    const selectedStyle = document.querySelector('input[name="cookie-style"]:checked').value;
+    
     // Reset state
     hideError();
     results.classList.remove('visible');
@@ -60,7 +63,7 @@ async function bakeCookie() {
         document.getElementById('original-img').src = avatarUrl;
         
         // Step 2: Transform to cookie
-        console.log(`🍪 Transforming to cookie...`);
+        console.log(`🍪 Transforming to cookie (style: ${selectedStyle})...`);
         const transformRes = await fetch(`${API_URL}/api/transform-to-cookie`, {
             method: 'POST',
             headers: {
@@ -68,7 +71,8 @@ async function bakeCookie() {
             },
             body: JSON.stringify({
                 imageUrl: avatarUrl,
-                username: username
+                username: username,
+                cookieStyle: selectedStyle
             })
         });
         
