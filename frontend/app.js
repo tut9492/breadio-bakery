@@ -204,50 +204,60 @@ function hideError() {
 
 // Scoring system based on your criteria
 function getBootyRating(score) {
-    if (score >= 4000) {
-        return {
-            booty: "absolute dump truck",
-            present: "10 million dollar home"
-        };
-    } else if (score >= 3000) {
-        return {
-            booty: "Don't care about face, booty so nice",
-            present: "cryptopunk"
-        };
-    } else if (score >= 1500) {
+    if (score >= 1000) {
         return {
             booty: "Best natural booty in web3",
-            present: "free trip to turkey for hair"
+            present: "CryptoPunk"
         };
-    } else if (score >= 1250) {
+    } else if (score >= 900) {
         return {
-            booty: "certified nice booty",
-            present: "at home espresso kit"
+            booty: "absolute dump truck",
+            present: "Bidet attachment"
         };
-    } else if (score >= 1000) {
+    } else if (score >= 800) {
         return {
-            booty: "would",
-            present: "dyson vacuum"
+            booty: "Economically Significant",
+            present: "Digital photo frame"
+        };
+    } else if (score >= 700) {
+        return {
+            booty: "Booty With Lore",
+            present: "Smart doorbell"
+        };
+    } else if (score >= 600) {
+        return {
+            booty: "Whole Foods Organic",
+            present: "Noise-canceling headphones"
+        };
+    } else if (score >= 500) {
+        return {
+            booty: "Algorithm Boosted",
+            present: "At-home espresso kit"
+        };
+    } else if (score >= 400) {
+        return {
+            booty: "Booty With Lore",
+            present: "Dyson vacuum"
         };
     } else if (score >= 300) {
         return {
-            booty: "botched BBL",
-            present: "coal"
+            booty: "Historic Landmark",
+            present: "Heated blanket"
         };
     } else if (score >= 200) {
         return {
-            booty: "booty can fit in one hand",
-            present: "coal"
+            booty: "Sneaky Side-Angle",
+            present: "Electric toothbrush"
         };
     } else if (score >= 100) {
         return {
-            booty: "a little booty bump",
-            present: "coal"
+            booty: "National Treasure",
+            present: "Fancy olive oil"
         };
     } else {
         return {
             booty: "pancake booty",
-            present: "coal"
+            present: "Socks From grandma"
         };
     }
 }
@@ -265,8 +275,8 @@ function displayScore(score) {
     bootyText.textContent = rating.booty;
     presentText.textContent = rating.present;
     
-    // Calculate progress (0-4000 range to show all booty types)
-    const maxScore = 4000;
+    // Calculate progress (0-1000 range to show all booty types)
+    const maxScore = 1000;
     const progress = Math.min((score / maxScore) * 100, 100);
     
     // Update progress bar
