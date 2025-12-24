@@ -21,10 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add click listener to bake button (more reliable than onclick)
     const bakeBtn = document.getElementById('bake-btn');
     if (bakeBtn) {
+        console.log('✅ Bake button found, adding click listener');
         bakeBtn.addEventListener('click', (e) => {
             e.preventDefault();
+            console.log('🔘 Bake button clicked!');
             bakeCookie();
         });
+    } else {
+        console.error('❌ Bake button not found!');
     }
 });
 
