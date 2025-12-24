@@ -52,8 +52,19 @@ async function bakeCookie() {
         const profileRes = await fetch(`${API_URL}/api/fetch-profile?username=${encodeURIComponent(username)}`);
         
         if (!profileRes.ok) {
-            const err = await profileRes.json();
-            throw new Error(err.error || 'Failed to fetch profile');
+            const contentType = profileRes.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                const err = await profileRes.json();
+                throw new Error(err.error || 'Failed to fetch profile');
+            } else {
+                // Got HTML or other non-JSON response (likely 404)
+                throw new Error(`API endpoint not found (${profileRes.status}). Please check Vercel deployment.`);
+            }
+        }
+        
+        const contentType = profileRes.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            throw new Error('API returned non-JSON response. Please check deployment.');
         }
         
         const profileData = await profileRes.json();
@@ -77,8 +88,19 @@ async function bakeCookie() {
         });
         
         if (!transformRes.ok) {
-            const err = await transformRes.json();
-            throw new Error(err.error || 'Failed to transform image');
+            const contentType = transformRes.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                const err = await transformRes.json();
+                throw new Error(err.error || 'Failed to transform image');
+            } else {
+                // Got HTML or other non-JSON response (likely 404)
+                throw new Error(`API endpoint not found (${transformRes.status}). Please check Vercel deployment.`);
+            }
+        }
+        
+        const contentType = transformRes.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            throw new Error('API returned non-JSON response. Please check deployment.');
         }
         
         const transformData = await transformRes.json();
