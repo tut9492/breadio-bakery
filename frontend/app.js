@@ -23,10 +23,18 @@ document.addEventListener('click', (e) => {
 });
 
 async function bakeCookie() {
+    console.log('🍪 bakeCookie() called');
+    
     const usernameInput = document.getElementById('username');
     const bakeBtn = document.getElementById('bake-btn');
     const results = document.getElementById('results');
     const error = document.getElementById('error');
+    
+    if (!usernameInput || !bakeBtn || !results || !error) {
+        console.error('Missing required elements:', { usernameInput, bakeBtn, results, error });
+        alert('Page not fully loaded. Please refresh and try again.');
+        return;
+    }
     
     // Clean username (remove @ if present)
     let username = usernameInput.value.trim().replace('@', '');
@@ -37,7 +45,13 @@ async function bakeCookie() {
     }
     
     // Get selected cookie style
-    const selectedStyle = document.querySelector('input[name="cookie-style"]:checked').value;
+    const styleRadio = document.querySelector('input[name="cookie-style"]:checked');
+    if (!styleRadio) {
+        showError('please select a cookie style');
+        bakeBtn.classList.remove('loading');
+        return;
+    }
+    const selectedStyle = styleRadio.value;
     
     // Reset state
     hideError();
