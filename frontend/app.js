@@ -146,7 +146,9 @@ async function bakeCookie() {
             const contentType = transformRes.headers.get('content-type');
             if (contentType && contentType.includes('application/json')) {
                 const err = await transformRes.json();
-                throw new Error(err.error || 'Failed to transform image');
+                // Use the detailed message from API if available
+                const errorMsg = err.message || err.error || 'Failed to transform image';
+                throw new Error(errorMsg);
             } else {
                 // Got HTML or other non-JSON response (likely 404)
                 throw new Error(`API endpoint not found (${transformRes.status}). Please check Vercel deployment.`);

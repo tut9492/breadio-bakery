@@ -108,12 +108,17 @@ export default async function handler(req, res) {
             contentType: 'image/png'
         });
         formData.append('prompt', COOKIE_PROMPT);
-        formData.append('model', 'gpt-image-1');
         formData.append('n', '1');
         formData.append('size', '1024x1024');
 
         // Call OpenAI Images API
-        console.log('🎨 Generating cookie with OpenAI gpt-image-1...');
+        // Note: /v1/images/edits doesn't require a model parameter
+        console.log('🎨 Generating cookie with OpenAI Images API...');
+        
+        if (!OPENAI_API_KEY) {
+            throw new Error('OPENAI_API_KEY environment variable is not set');
+        }
+        
         const response = await axios.post(
             'https://api.openai.com/v1/images/edits',
             formData,
@@ -127,12 +132,18 @@ export default async function handler(req, res) {
         );
 
         // Get the image - could be URL or base64
+        if (!response.data || !response.data.data || !response.data.data[0]) {
+            throw new Error('OpenAI API returned invalid response format');
+        }
+        
         let cookieImage;
         if (response.data.data[0].url) {
             cookieImage = response.data.data[0].url;
         } else if (response.data.data[0].b64_json) {
             // Convert base64 to data URI for browser display
             cookieImage = `data:image/png;base64,${response.data.data[0].b64_json}`;
+        } else {
+            throw new Error('OpenAI API response missing image data');
         }
         
         console.log('✅ Cookie generated successfully!');
@@ -145,13 +156,31 @@ export default async function handler(req, res) {
         });
     } catch (error) {
         console.error('❌ OpenAI API Error:', error.response?.data || error.message);
+        console.error('Error stack:', error.stack);
         
-        const errorMessage = error.response?.data?.error?.message || error.message;
+        // Extract more detailed error message
+        let errorMessage = error.message;
+        if (error.response?.data?.error?.message) {
+            errorMessage = error.response.data.error.message;
+        } else if (error.response?.data) {
+            errorMessage = JSON.stringify(error.response.data);
+        }
         
-        res.status(500).json({ 
+        // Check for specific error types
+        if (error.message?.includes('OPENAI_API_KEY')) {
+            errorMessage = 'OpenAI API key is missing. Please configure OPENAI_API_KEY in Vercel environment variables.';
+        } else if (error.response?.status === 401) {
+            errorMessage = 'OpenAI API key is invalid or expired.';
+        } else if (error.response?.status === 429) {
+            errorMessage = 'OpenAI API rate limit exceeded. Please try again later.';
+        } else if (error.code === 'ECONNABORTED' || error.message?.includes('timeout')) {
+            errorMessage = 'Request timed out. The image generation took too long.';
+        }
+        
+        res.status(error.response?.status || 500).json({ 
             error: 'Failed to transform image',
             message: errorMessage,
-            details: error.response?.data
+            details: error.response?.data || { message: error.message }
         });
     }
 }
